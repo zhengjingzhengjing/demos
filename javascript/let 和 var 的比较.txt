@@ -1,0 +1,42 @@
+ 在JavaScript 1.7中， let 关键词被添加进来， 我听说它声明之后类似于”本地变量“， 但是我仍然不确定它和 关键词 var 的具体区别。
+    回答：
+    不同点在于作用域， var关键词的作用域是最近的函数作用域（如果在函数体的外部就是全局作用域）， let 关键词的作用域是最接近的块作用域（如果在任何块意外就是全局作用域），这将会比函数作用域更小。
+    同样， 像var 一样， 使用let 声明的变量也会在其被声明的地方之前可见。 
+
+下面是Demo 例子。
+全局（Global）
+当在函数体之外它们是平等的。
+[javascript] view plain copy 在CODE上查看代码片派生到我的代码片
+let me = 'go'; //globally scoped  
+var i = 'able'; //globally scoped  
+
+函数（Function）
+当瞎下面这种， 也是平等的。 
+[javascript] view plain copy 在CODE上查看代码片派生到我的代码片
+function ingWithinEstablishedParameters() {  
+    let terOfRecommendation = 'awesome worker!'; //function block scoped  
+    var sityCheerleading = 'go!'; //function block scoped  
+};  
+
+块（Block）
+这是不同点， let 只是在 for 循环中， var  却是在整个函数都是可见的。 
+[javascript] view plain copy 在CODE上查看代码片派生到我的代码片
+function allyIlliterate() {  
+    //tuce is *not* visible out here  
+  
+    for( let tuce = 0; tuce < 5; tuce++ ) {  
+        //tuce is only visible in here (and in the for() parentheses)  
+    };  
+  
+    //tuce is *not* visible out here  
+};  
+  
+function byE40() {  
+    //nish *is* visible out here  
+  
+    for( var nish = 0; nish < 5; nish++ ) {  
+        //nish is visible to the whole function  
+    };  
+  
+    //nish *is* visible out here  
+};  

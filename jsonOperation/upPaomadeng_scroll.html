@@ -1,0 +1,66 @@
+<!--
+    http://www.jb51.net/article/51193.htm  很多js jq效果 必须得多看看
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jq向上的跑马灯效果</title>
+        <style>
+            *{ padding: 0; margin: 0}
+            ul li{ list-style: none}
+            .recordList{
+                width: 500px;margin: 0 auto; margin-top: 50px; border: 1px solid red; height: 150px;
+                overflow: hidden
+            }
+            .tpl_rotate_recordList li{
+                height: 30px;
+                line-height: 30px;
+                background-color: pink;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="recordList"> 
+        <ul class="tpl_rotate_recordList"> 
+            <li>  1恭喜187****5204获得1000RBM </li> 
+            <li>  2恭喜137****1372获得1000RBM  </li> 
+            <li>  3恭喜156****0276获得1000RBM  </li> 
+            <li>  4恭喜139****9856获得1000RBM   </li> 
+            <li>  5恭喜136****0580获得1000RBM   </li> 
+            <li>  6恭喜136****0580获得1000RBM  </li> 
+            <li>  7恭喜138****8118获得1000RBM   </li> 
+            <li>  8恭喜136****5555获得1000RBM  </li> 
+            <li>  9恭喜136****0580获得1000RBM  </li> 
+            <li>  10恭喜136****0580获得1000RBM  </li> 
+        </ul> 
+        </div> 
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(function(){
+            
+           var doScroll = function(){
+               var $parent = $('.tpl_rotate_recordList');
+               var $first = $parent.find('li:first');
+               var height = $first.height();
+    
+                $first.animate({
+                    marginTop:"-"+height+"px"
+                },500,function(){
+                    $first.css('marginTop',"0px").appendTo($parent);    
+                })
+           }
+             setInterval(function(){doScroll()}, 2000);
+        })
+    </script>
+</html>
+
+
+
+
+
+
+
+

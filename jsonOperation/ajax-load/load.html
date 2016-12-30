@@ -1,0 +1,52 @@
+<!--
+    **ajax 里面的加载
+    //可以每隔60s加载一个文件
+            setInterval(function(){
+               $("#status").load('status_report.html')
+           },3000)
+
+    //加载并显示天气预告的温度部分
+            $("#status").load('wheather_report.html #temperature')
+
+    //加载特定区号的天气预报 
+            $("#status").load('wheather_report.html','zipcode=02134')
+
+    //加载特定区号的天气预报 ,并指定为华氏温度
+            $("#status").load('wheather_report.html',{zipcode=02134,units:'F'})
+        
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jq全选</title>
+        <style>
+            .status{
+                width: 500px;
+                height: 500px;
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="status" id="status">
+             
+       </div>
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+   
+    <script>
+        $(function(){
+          
+        })
+    </script>
+</html>
+
+
+
+
+
+
+
+

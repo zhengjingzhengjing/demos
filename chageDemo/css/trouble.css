@@ -1,0 +1,77 @@
+html,body{
+    overflow-x: hidden;
+    height:100%;
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+body{
+    font-size: 20px;
+}
+.zj_header{
+    width: 94%;
+    padding: 0 3%;
+    margin: 0 auto;
+}
+.trouble_unit {
+    text-align: center;
+    margin: 0 auto;
+    height: 60px;
+    line-height: 60px;
+    display: block;
+    border-bottom: 1px solid #d2d2d2;
+    font-size: 1.1rem;
+}
+.trouble_unit li {
+    float: left;
+    width: 50%;
+}
+.trouble_unit li.active span{
+    display: inline-block;
+    color: #0097ff;
+    height: 60px;
+    border-bottom: 1px solid #0097ff;
+    padding: 0 15px;
+}
+.hide{
+    display: none;
+}
+input, select {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #aaa;
+    box-sizing: border-box;
+    border-radius: 5px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -webkit-border-radius: 5px;
+}
+.trouble-warp-table{
+    border-bottom: none;
+    overflow-x: scroll;
+    background: #fff
+}
+.unitLeft{
+    float: left;
+    width: 25%;
+    background: pink;
+    min-height: 400px;
+}
+.unitBlank{
+    margin-left: 25%;
+    border: 1px solid red;
+    min-height: 400px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>控制固定图片大小</title>
+        <style>
+            .imgSize{
+                padding: 3px;
+                border: 1px solid red;
+                width: 200px;
+                height: 200px
+            }
+            .imgSize img{
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="imgSize">
+            <img src="img/2.png">
+        </div>
+        
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script> 
+        var img = $(".imgSize img");
+        var imgWidth = img.width();
+        var imgHeight = img.height();
+        
+        var maxNum = Math.max(imgWidth,imgHeight);
+        
+        var a = maxNum/200;
+        
+    </script>    
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Luella</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+
+    <link rel="stylesheet" href="css/base.css" />
+    <!--<link rel="stylesheet" href="css/wing.css" />-->
+    <link rel="stylesheet" href="css/index.css" />
+    
+    <!--上传头像 s-->
+    <link href="js/upload/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="js/upload/cropper/cropper.min.css" rel="stylesheet">
+	<link href="js/upload/sitelogo/sitelogo.css" rel="stylesheet">
+    <!--上传头像 e-->
+    
+</head>     
+    
+<body>
+    <audio autoplay="autoplay" id="audioMusic" loop="loop">
+      <source src="http://od19hmm2p.bkt.clouddn.com/%E5%8B%8B%E7%AB%A0-%E9%B9%BF%E6%99%97.mp3" type="audio/mp3" />
+    </audio>
+    <aside class="leftNav">
+            <div class="ibox-content">
+		<div class="row">
+			<div id="crop-avatar" class="col-md-6">
+				<div class="avatar-view" title="Change Logo Picture">
+			    	<img src="img/logo.jpg" alt="Logo" width="100">
+			    </div>
+			</div>
+		</div>
+	</div>
+            <input type="button" id="login"  value="登录">
+            <input type="button" id="register" value="注册">
+            <div class="changeTab">
+                <input type="button" id="register" value="文章">
+                <input type="button" id="register" value="图片">
+                <input type="button" id="register" value="多列">
+            </div>
+    </aside>
+    <section class="wrap" id="wrap">
+        <!--<nav class="nav">
+            <input type="button" id="login"  value="登录">
+            <input type="button" id="register" value="注册">  
+        </nav>-->
+        <canvas id="luhan"></canvas>
+        <canvas id="luhan2"></canvas>
+        <small class="opMusic opMusicPlayAndPause" id="opMusic"></small>
+        
+        <div class="changeContent">
+            <aside class="aside">
+                <h2 class="title">有心最要紧</h2>
+                <author class="author">梁凤仪</author>
+                <arcticle class="article">
+                    <p>世上无难事，只怕有心人。</p>
+                    <p>这是千真万确的。有心自然有策略、有计划、有目标，再加上会有恒心、有毅力，不成功的机会相对要低。
+                    </p>
+                    <p>“心”很多时候就是力量之所在。
+                    </p>
+                    <p>为什么有一些朋友很久都没有见面，其实主要是因为没“心”去见面，所以就变成了没时间、没机会见面。我常跟我的同事开玩笑说：“世界上办不成功的事多半是没有下死劲对准那件事来办。如果有哪一个月，我没有给你发工资，哪怕怎么困难，你都会想尽办法把我翻出来，因为你一门心思就全放在要你应得的那份工资上。”
+                    </p>
+                    <p>我曾说过，心思是无穷无尽的“资源”，用多一点心思，受惠无穷。不单是夫妻，哪怕朋友与同事，多放点心思在对方身上，是既经济又实惠又能感动人的行为。要社会和谐，人与人之间彼此“有心”很有必要。我自问是个对朋友相当有心的人，我也有很多对我很有心的朋友。以下就是让我很感动的一个例子。
+                    </p>
+                    <p>话说我初进香港财经界，服务的新鸿基证券集团，只有两位女性在管理层的高位。一个是我，掌管集团所有后勤部门，另一位是玛利，她是大律师，辖下是公司法律和秘书部门。在集团的职位和职权上，我们各有千秋，可绝没有同性相妒相拒，相反，我俩非常的惺惺相惜，更由于在行政管理理念与职业女性甘苦上的意见相当的不谋而合，因此成为了好朋友。彼此做同事3年之后，各奔前程，见面机会有如“牛郎织女”，一年顶多一次。但一有金融风暴发生，玛利必定打电话来问“你没事吧？”当我回应“还成”。她就说“只要你好，我就放心了”。这无疑就是有“心”的表现。的确，以我们的心思，长久有效而且温馨地保持了友谊，且日益深厚。
+                    </p>
+                    <p>玛利知道我有一个“怪僻”，就是喜欢“毛毛熊”。都一把年纪了，偏爱抱毛毛熊。于是每一年我生日，玛利都准时送给我一个毛毛熊。我一向是把它们放在床上。过了十年八载，床上放不下这么多毛毛熊了，而且我老公对它们不太客气，一回家，就一手把它们扫落地上，自己跳上床蒙头大睡。于是，我另找安置它们的地方。就让它们排列坐在楼梯上，一级坐一个毛毛熊，到现在，20多个坐得满满的。每次回到香港的家，就想起玛利，和我们这一段温馨的友谊。
+                    </p>
+                    <p>最近玛利退休了。我送了她一个手表和一张字条，写着：“我本来很心痛花一笔钱给你买这块手表。后来细心的计算一下，认识你30余年，一共超过1万天，不少于262800小时，就别算多少分与秒了。以每天计算，我也只不过一天为你花几块，不算贵了，你收下吧！”
+                    </p>
+                    <p>玛利欣然收下，且向我回了礼，是一张写了我名字的慈善捐款收据，且有一个粉红的水晶球，并愿我常常摸摸水晶球就可以心想事成。我把它放在办公室里，非多摸几遍不可，我的愿望恰恰正如玛利一样，早点“退”出江湖，而不“休”于生活呢。
+                    </p>
+                    <p>友谊真好，知道有人疼自己，在别人的生活上脑海里有自己的份儿，那种感觉往往是奋斗力量的源泉。如何可以与朋友加强这种生活的力量和幸福感？只要有心，自然有好办法，不必花费而力量无穷。</p>
+                </arcticle>
+                 <a href="http://www.zhengjingyes.com/"><button class="btn">进入网站</button></a>
+            </aside>
+            <aside class="aside imgShow" style="display:none">
+                <img src="img/img1.png" alt="" title="" />
+                <img src="img/bg1.jpg" alt="" title="" />
+                <img src="img/bg2.jpg" alt="" title="" />
+                <img src="img/bg3.jpg" alt="" title="" />
+                <img src="img/bg4.jpg" alt="" title="" />
+                <img src="img/bg5.jpg" alt="" title="" />
+                <img src="img/bg6.jpg" alt="" title="" />
+                <img src="img/bg7.jpg" alt="" title="" />
+                <img src="img/bg8.jpg" alt="" title="" />
+                <img src="img/bg9.jpg" alt="" title="" />
+                <img src="img/bg10.jpg" alt="" title="" />
+                <img src="img/bg1.jpg" alt="" title="" />
+            </aside>
+            <aside class="aside" style="display:none">
+                <div class="columnList">
+                    <h2>我是题目我是题目我要用column-span来s</h2>
+                    column CSS3 可以将文本内容设计成像报纸一样的多列布局，如下实例:column-count属性指定了需要分割的列数。
+column-gap 属性指定了列与列间的间隙。
+column-rule-style 属性指定了列与列间的边框样式：
+column-rule-width 属性指定了两列的边框厚度:
+column-rule-color 属性指定了两列的边框颜色：
+column-rule属性是 column-rule-* 所有属性的简写。 设置了列直接的边框的厚度，样式及颜色：
+column-span 跨越所有列   一般题目就是要横跨很多列
+column-width   属性指定了列的宽度。
+                </div>
+            </aside>
+        </div>
+        
+    </section>
+    <div class="cover"></div>
+    <!--登录-->
+    <div id="loginPop" class="hide">
+        <div class="">
+            <input type="text" placeholder="请不要使用空格" class="email" />
+        </div>
+        <div>
+            <input type="button" value="取消" class="loginBtn cansel" />
+        </div>
+    </div>
+    <!--上传图片-->
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form class="avatar-form" action="{{url('admin/upload-logo')}}" enctype="multipart/form-data" method="post">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal" type="button">&times;</button>
+                        <h4 class="modal-title" id="avatar-modal-label">Change Logo Picture</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="avatar-body">
+                            <div class="avatar-upload">
+                                <input class="avatar-src" name="avatar_src" type="hidden">
+                                <input class="avatar-data" name="avatar_data" type="hidden">
+                                <label for="avatarInput">图片上传</label>
+                                <input class="avatar-input" id="avatarInput" name="avatar_file" type="file"></div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="avatar-wrapper"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="avatar-preview preview-lg"></div>
+                                    <div class="avatar-preview preview-md"></div>
+                                    <div class="avatar-preview preview-sm"></div>
+                                </div>
+                            </div>
+                            <div class="row avatar-btns">
+                                <div class="col-md-9">
+                                    <div class="btn-group">
+                                        <button class="btn" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"><i class="fa fa-undo"></i> 向左旋转</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"><i class="fa fa-repeat"></i> 向右旋转</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-success btn-block avatar-save" type="submit"><i class="fa fa-save"></i> 保存修改</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+</body>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/layer/layer.js"></script>
+<!--上传图片-->
+<script src="js/upload/cropper/cropper.min.js"></script>
+<script src="js/upload/sitelogo/sitelogo.js"></script>
+<script src="js/upload/bootstrap/js/bootstrap.min.js"></script>
+</html>
+        
+        
+        
+        
+        
+        
+        
+        
+        

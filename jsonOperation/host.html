@@ -1,0 +1,46 @@
+<!--
+    站外还是站内链接  如果是站内就在当前页面打开，如果是站外就在新的选项卡打开
+
+    这里主要用到attr  函数  相关函数removeattr 函数，用于移除属性
+
+    获取css属性  ==》 css()
+    获取css 类  =》addClass()和removeClass()   toggleClass()[切换类] hasClass() is()监测是否有这个类 is比hasClass更灵活
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>站外还是站内链接</title>
+    </head>
+    <body>
+       <a href="http://www.baidu.com">百度一下  你就知道</a>
+       <a href="data.html">阿鹿啊</a>
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    
+    
+    <script>
+        $(function(){
+            /*方式一：*/
+           /* $("a").attr('target',function(){
+                if (this.host == location.host){ return "_self"}
+                else{return "_blank"};
+            })*/
+            
+            /*方式二：*/
+            $("a").attr({target:function(){
+                if(this.host == location.host){return '_self'}
+                else{ return '_blank'}
+            }})
+        })
+    </script>
+</html>
+
+
+
+
+
+
+
+

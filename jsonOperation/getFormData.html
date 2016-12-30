@@ -1,0 +1,63 @@
+<!--
+    **获取form表单里面各值
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>form表单</title>
+        <style>
+            .zj_huhu{
+                width: 500px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="zj_huhu">
+            <p><input type="text" name="xingming" id="xingming" value="请输入姓名" /></p>
+            <p><input type="password" name="pwd" id="pwd" value="请输入密码" /></p>
+            <p><input type="radio" name="sex" value="男" checked />男<input type="radio" name="sex" value="女" />女</p>
+            <p>
+                <input type="checkbox" name="chk" value="足球" />足球
+                <input type="checkbox" name="chk" value="篮球" />篮球
+                <input type="checkbox" name="chk" value="保龄球" />保龄球
+                <input type="checkbox" name="chk" value="游泳" />游泳
+            </p>
+            <p>
+                <input type="button" value="确定" id="zj_btn" />
+            </p>
+        </div>
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    
+    <script>
+        $(function(){
+            $("#zj_btn").on('click',function(){
+                var xingming =$("#xingming").val();
+                var pwd = $("#pwd").val();
+                var radio = $("input:radio[name=sex]:checked").val();
+                var chk = $("input:checkbox:checked").val();
+                
+                //??:复选框选中多个但是只能弹出第一个选中的
+                
+                alert(xingming+"--"+pwd+"--"+radio+"--"+chk);
+                
+                //重置文本里面的值回到默认值
+                $("input:text").val(function(){
+                    return this.defaultValue;
+                })
+                
+            })
+        })
+    </script>
+</html>
+
+
+
+
+
+
+
+

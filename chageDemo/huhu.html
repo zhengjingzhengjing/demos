@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>鼠标移上去显示背景</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta   http-equiv="Expires"   CONTENT="0">
+    <meta   http-equiv="Cache-Control"   CONTENT="no-cache">
+    <meta   http-equiv="Pragma"   CONTENT="no-cache">
+    <meta name="wap-font-scale" content="no">
+    <link href="http://ogejscb8f.bkt.clouddn.com/huasu.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/trouble.css">
+
+    <link href="css/mobiscroll.2.13.2.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/mobiscroll.2.13.2.js"></script>
+    <style>
+        .table{  width: 700px; margin: 0 auto; margin-top: 50px;}
+        .table tr{ line-height: 30px}
+        .table tr td,.table tr th{ border: 1px solid red;  text-align: center}
+       /* .table tr:hover{ background: pink; cursor: pointer}*/
+    </style>
+    <script>
+        $(function(){
+            $(".table tr").mouseover(function(){
+                $(this).css('background','pink');
+            }).mouseout(function(){
+                $(this).css('background','#fff');
+            });
+        })
+    </script>
+<body>
+    <table class="table">
+        <tr><th>我是dj</th><th>我是dj</th><th>我是dj</th><th>我是dj</th><th>我是dj</th><th>我是dj</th></tr>
+        <tr><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td></tr>
+        <tr><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td></tr>
+        <tr><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td></tr>
+        <tr><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td></tr>
+        <tr><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td></tr>
+        <tr><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td></tr>
+        <tr><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td><td>我是dj</td></tr>
+    </table>
+</body>
+
+</html>
+
+
+
+
+
+
+
+

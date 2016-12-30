@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>seaJs</title>
+	<!--<link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css">-->
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+	<input type="hidden" value="我是张三" id="btn" />
+    
+    <!--鼠标移上去显示大图-->
+    <div class="bigSmallImg" id="bigSmallImg">
+        <img src="img/aa.png" class="bigImg">
+        <img src="img/bb.jpg" class="bigImg">
+        <img src="img/aa.png" class="bigImg">
+        <img src="img/bb.jpg" class="bigImg">
+        <div class="bImgArea"></div>
+    </div>
+    
+    
+    
+    <div class="marginTop">
+        <hr>
+        <div>得值 显示隐藏</div>
+        <input type="text"  placeholder="请填写" id="inputValue">
+        <ul class="alternativeList">
+            <li>我是张三1</li>
+            <li>我是张三2</li>
+            <li>我是张三3</li>
+        </ul>
+    </div>
+    <hr>
+    <div class="marginTop1">
+        <input type="text"  placeholder="请填写" id="inputValue1">
+        <ul class="alternativeList1">
+            <li>我是张三1</li>
+            <li>我是张三2</li>
+            <li>我是张三3</li>
+        </ul>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ </body>
+    <script src="js/script/sea/2.1.0/sea.js"></script>
+    <script src="js/script/lib/config.js"></script>
+    <script>
+        var path = '/seaDemo/js/';
+        seajs.use([path + 'index.js']);
+    </script>
+</html>

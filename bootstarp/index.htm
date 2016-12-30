@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>bootstrap</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/fonts/css/font-awesome.min.css">
+    <!--仿：http://getbootstrap.com/examples/offcanvas/-->
+</head>
+<body>
+    <!--<div class="zj_wrap">
+        <div class="zj_header">
+            <div class="container">
+                <div class="zj_logo pull-left"><img src="img/logo.png" class="img-responsive"></div>
+                <nav class="pull-right">
+                    <ul>
+                        <li><a href="#">首页</a> </li>
+                        <li><a href="#">关于</a> </li>
+                        <li><a href="#">产品</a> </li>
+                        <li><a href="#">案例</a> </li>
+                        <li><a href="#">新闻</a> </li>
+                        <li><a href="#">联系</a> </li>
+                        <li><i class="fa fa-search"></i> </li>
+                    </ul>
+                    <a href="#" id="pull"><img src="img/nav-icon.png" title="menu"></a>
+                </nav>
+            </div>
+        </div>
+    </div>-->
+    <div>
+        <!--导航-->
+        <nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+            <div class="container-fluid"> 
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" 
+                            data-target=".bs-js-navbar-scrollspy">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">教程名称</a>
+                </div>
+                <div class="collapse navbar-collapse bs-js-navbar-scrollspy">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#ios">iOS</a></li>
+                        <li><a href="#svn">SVN</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="navbarDrop1" class="dropdown-toggle" 
+                               data-toggle="dropdown">Java
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" 
+                                aria-labelledby="navbarDrop1">
+                                <li><a href="#jmeter" tabindex="-1">jmeter</a></li>
+                                <li><a href="#ejb" tabindex="-1">ejb</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#spring" tabindex="-1">spring</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </nav>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <!--超大屏幕Jumbotron 英文也是大屏幕的意思-->
+                    <div class="jumbotron">
+                        <h1>Hello, world!！</h1>
+                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h1>Heading</h1>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                            <p>
+                                <a href="#" class="btn btn-default">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h1>Heading</h1>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                            <p>
+                                <a href="#" class="btn btn-default">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h1>Heading</h1>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                            <p>
+                                <a href="#" class="btn btn-default">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h1>Heading</h1>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                            <p>
+                                <a href="#" class="btn btn-default">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h1>Heading</h1>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                            <p>
+                                <a href="#" class="btn btn-default">View details »</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h1>Heading</h1>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                            <p>
+                                <a href="#" class="btn btn-default">View details »</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--有链接的列表组-->
+                <div class="col-md-3 col-xs-6">
+                    <a href="#" class="list-group-item active">免费域名注册</a>
+                    <a href="#" class="list-group-item">24*7 支持</a>
+                    <a href="#" class="list-group-item">免费 Window 空间托管</a>
+                    <a href="#" class="list-group-item">图像的数量</a>
+                    <a href="#" class="list-group-item">每年更新成本</a>
+                </div>
+            </div>
+        </div>   
+        
+        <div class="container" style="border-top:1px solid">
+            <p style="padding:30px 0">© 2016 Company, Inc.</p>
+        </div>
+        <div class="container">
+            <div id="myAlert" class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>成功！</strong>结果是成功的。
+            </div>
+        </div>
+        
+        <div class="container">
+            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="右侧的 Tooltip">右侧的 Tooltip</button>
+        </div>
+        
+        <div class="container" style="padding: 100px 50px 10px;" >
+    <button type="button" class="btn btn-default" title="Popover title"
+            data-container="body" data-toggle="popover" data-placement="left"
+            data-content="左侧的 Popover 中的一些内容">
+        左侧的 Popover
+    </button>
+    <button type="button" class="btn btn-primary" title="Popover title"
+            data-container="body" data-toggle="popover" data-placement="top"
+            data-content="顶部的 Popover 中的一些内容">
+        顶部的 Popover
+    </button>
+    <button type="button" class="btn btn-success" title="Popover title"
+            data-container="body" data-toggle="popover" data-placement="bottom"
+            data-content="底部的 Popover 中的一些内容">
+        底部的 Popover
+    </button>
+    <button type="button" class="btn btn-warning" title="Popover title"
+            data-container="body" data-toggle="popover" data-placement="right"
+            data-content="右侧的 Popover 中的一些内容">
+        右侧的 Popover
+    </button>
+</div>
+        
+        
+        <div class="well">您好，我在 Well 中！</div>
+        
+        
+    </div>
+</body>
+<!--[if IE 8]>
+<script src="js/videojs-ie8.min.js"></script>
+<![endif]-->
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/index.js"></script>
+<script>
+    $(function(){
+	$(".close").click(function(){
+		$("#myAlert").alert();
+	});
+    $("[data-toggle='tooltip']").tooltip(); 
+    $("[data-toggle='popover']").popover();
+}); 
+</script>
+</html>

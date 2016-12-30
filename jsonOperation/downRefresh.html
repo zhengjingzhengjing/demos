@@ -1,0 +1,118 @@
+<!--
+    **下拉刷新数据
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>下拉刷新数据</title>
+		<meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
+    <body>
+        <table class="tableDiv" border="1">
+            <tr>
+                <th>id</th>
+                <th>code</th>
+                <th>name</th>
+                <th>chinese</th>
+                <th>操作</th>
+            </tr>
+        </table>
+        
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="layer/layer.js"></script>
+    <script>
+        
+        var Data = null;  //从数据库里面查询出来的所有数据   设置为空的时候后面好判断
+        var pageSize = 50;  //每一页的条数
+        var pageNo = 1;   //当前页
+        var pageTotal = 0;  //总页数
+        var startIndex = 0;  //开始截取位置
+        var endIndex = 0;   //最后截取位置
+        
+        refreshMthod();
+        
+        function refreshMthod(){
+            $.ajax({
+                url:'downRefresh.php',
+                type:'post',
+                dataType:'json',
+                success:function(res){
+                    Data = res.data;  //这样获取之后是[object,object形式]
+                    if(Data){
+                        pageTotal = Data.length;
+                    }
+                    startIndex = (pageNo - 1) * pageSize; //开始条数  0开始的
+                    endIndex = startIndex + pageSize;
+                    renderPage(Data.slice(startIndex,endIndex));
+                    pageSize = 10;  //第一次加载50条出来之后，后面加载就10条10条显示出来，
+                },
+                error:function(r){
+                    console.info(r);
+                }
+            })
+            
+        }
+        
+        /*
+         * @param data[Array]
+         */
+        function renderPage(data){
+            var str = "";
+            for(var i = 0;i<data.length;i++){
+                str += 
+                    "<tr><td>"+data[i]['id']+
+                    "</td><td>"+data[i]['code']+
+                    "</td><td>"+data[i]['name']+
+                    "</td><td>"+data[i]['chinese']+
+                    "</td><td><input type='button' class='zj_btn' value='操作'></td></tr>"
+            }
+            
+            var hint = "正在加载";
+            if(endIndex >= Data.length - 1){
+                hint = "加载完成;";
+            }
+            var hint2 = "<tr id='hint' colspan='4'>"+ hint +"</tr>";
+            $(".tableDiv").append(str);
+            $(".tableDiv").append(hint2);
+        }
+        
+        
+        
+        $(window).scroll(function() {
+            var st = $(this).scrollTop();
+            var height = $('.tableDiv').height();
+            if(st >= height){
+                if(endIndex >= Data.length - 1){
+                    return;
+                }
+                pageNo++;
+                startIndex = (pageNo - 1) * pageSize;
+                endIndex = startIndex + pageSize;
+                renderPage(Data.slice(startIndex,endIndex));
+            }
+        });
+        
+        
+        
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>回到顶部</title>
+<style type="text/css">
+    body,html{ margin: 0; padding: 0}
+    #page{ width: 1200px; margin: 0 auto; min-height: 3000px; background:pink}
+   /*默认样式，主要是position:fixed实现屏幕绝对定位*/ 
+    #gotoTop{ display:none; position:fixed;top:75%;right: 0;cursor:pointer; padding:9px 4px;width:20px; text-align:center; border:1px solid #e0e0e0; background:red;} 
+    /*用CSS表达式(expression)来实现ie6下position:fixed效果*/ 
+    /*#gotoTop{_position:absolute;_top:expression(documentElement.scrollTop + documentElement.clientHeight * 3/4 + "px")} */
+    /*鼠标进入的反馈效果*/ 
+    #gotoTop.hover{background:#5CB542;color:#fff;text-decoration:none;} 
+</style>
+</head>
+<!--
+    http://www.jb51.net/article/35995.htm   多种方式回到顶部
+-->           
+<body>
+    <div id="page">
+       
+    </div>
+</body>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script>
+   /*function gotoTop(min_height){ 
+    var gotoTop_html = '<div id="gotoTop">返回顶部</div>'; 
+    //将返回顶部的html代码插入页面上id为page的元素的末尾 
+    $("#page").append(gotoTop_html); 
+    $("#gotoTop").click(function(){
+            $('html,body').animate({scrollTop:0},700); 
+        }).hover(function(){ //为返回顶部增加鼠标进入的反馈效果，用添加删除css类实现 
+            $(this).addClass("hover");
+        },function(){
+            $(this).removeClass("hover"); 
+        }); 
+    //获取页面的最小高度，无传入值则默认为600像素 
+    min_height ? min_height = min_height : min_height = 600; 
+    //为窗口的scroll事件绑定处理函数 
+    $(window).scroll(function(){ 
+        //获取窗口的滚动条的垂直位置 
+        var s = $(window).scrollTop(); 
+        console.log(s);
+        //当窗口的滚动条的垂直位置大于页面的最小高度时，让返回顶部元素渐现，否则渐隐 
+        if( s > min_height){ 
+            $("#gotoTop").fadeIn(100); 
+        }else{ 
+            $("#gotoTop").fadeOut(200); 
+        }; 
+    }); 
+   }; 
+gotoTop(); */
+    $(function(){
+        
+        function gotoTop(min_height){
+            var txt = "<div id='gotoTop'>返回顶部</div>";
+            $("#page").append(txt);
+
+            $("#gotoTop").click(function(){
+                $('html,body').animate({marginTop:0},600);
+            }).hover(function(){
+                $(this).addClass('hover');
+            },function(){
+                $(this).removeClass('hover');
+            })
+
+            min_height ? min_height = min_height : min_height = 600;
+
+            $(window).scroll(function(){
+                var t = $(window).scrollTop();
+                if(t > min_height){
+                    $("#gotoTop").fadeIn(100);
+                }else{
+                    $("#gotoTop").fadeOut(200);
+                }
+            })
+        }
+        gotoTop();
+    })
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset=utf-8>
+<title>audio</title>
+<script>
+var end = 3;
+onload = function(){
+  audio.addEventListener('timeupdate', function () { 
+     if(audio.currentTime>end){
+       audio.pause();
+     }
+   }, false);  
+audio.addEventListener('loadedmetadata', function () { 
+     audio.play();  
+   }, false);  
+   
+}
+</script>
+<body>
+  
+<audio id="audio" src="http://od19hmm2p.bkt.clouddn.com/IntoTheNew%20World.mp3" controls="controls">
+Your browser does not support the audio element.
+</audio>
+  
+</body>
+</html>

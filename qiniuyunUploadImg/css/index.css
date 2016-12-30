@@ -1,0 +1,21 @@
+@font-face {
+    font-family: pictos;
+    src:url('http://od19hmm2p.bkt.clouddn.com/PingFangRegular.otf'),
+        url('PingFangRegular.otf')
+}
+
+a, a:hover,a:active{ text-decoration: none; color: #000; }
+* { margin: 0; padding: 0; }
+.clearfix{ overflow: auto; _height:1%}
+ul li { list-style: none; }
+
+body { font-family:pictos; font-size: 14px; }
+
+.zj_wrap{ position: relative}
+
+
+@media screen and (max-width: 992px) { 
+
+}
+
+

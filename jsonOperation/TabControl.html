@@ -1,0 +1,87 @@
+<!--
+    选项卡
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>选项卡</title>
+        <style>
+            *{ margin: 0; padding: 0 }
+            a,a:hover,a:active{text-decoration: none; color: #000}
+            ul li{ list-style: none}
+            .tabWrap{
+                width: 500px;
+                background: pink;
+                height: auto;
+                margin: 0 auto;
+                margin-top: 50px;
+            }
+            .tabUl{
+                margin-bottom: 20px;
+                border-bottom: 1px solid #ecd21d;
+                padding-bottom: 2px
+            }
+            .tabUl li{
+                width: 50%;
+                height: 36px;
+                line-height: 36px;
+                text-align: center;
+                float: left;
+            }
+            .tabUl li span{
+                 padding: 0 15px;
+                 cursor: pointer;
+                display: inline-block
+            }
+            .tabUl li span.active{
+                color: blue;
+                border-bottom: 1px solid blue;
+               
+            }
+            .clearfix{ overflow: hidden;_zoom:1}
+            .hide{ display: none}
+            
+            .containerDiv{
+                min-height: 300px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="tabWrap">
+            <ul class="tabUl clearfix">
+                <li protoType='one'><span class="active">选项一</span></li>
+                <li protoType='two'><span>选项二</span></li>
+            </ul>
+        <div class="container">
+            <div class="containerDiv">我是选项卡1的内容</div>
+            <div class="containerDiv hide">
+                <div class="h1">
+                    <h1>我是一些内容</h1>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $(".tabUl").on('click','li',function(){
+                var o = $(this);
+                var i = o.index();
+                
+                _pageType = o.attr('protoType');
+                $()
+            })  
+        })
+    </script>
+</html>    
+    
+
+
+
+
+
+
+

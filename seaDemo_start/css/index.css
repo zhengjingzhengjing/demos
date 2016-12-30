@@ -1,0 +1,31 @@
+/* *{
+    margin: 0;
+    padding: 0;
+} */
+.search{
+	width: 500px;
+	height: 40px;
+}
+.search:before{
+	content: "\f002";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #000;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    z-index: 1
+}
+.expression{
+    width: 600px;
+    border: 1px solid red;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.banner { position: relative; overflow: auto; }
+.banner li { list-style: none; }
+.banner ul li { float: left; }
+.banner ul li img{ display: inline-block; width: 100%; max-width: 100%;}

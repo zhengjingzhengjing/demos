@@ -1,0 +1,30 @@
+<!--
+    
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>文字一个字一个字打印</title>
+    <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+       <div id="fontAfter"></div>
+        <div style="display:none" id="fontBefore">我绕着梦想一直转，你看到了哪一段，不喜欢哪一段，都感谢收看！</div>
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var index = 0;
+            var fontBefore = $("#fontBefore").html();
+            var lastIndex = fontBefore.length;
+            
+            function _type(){
+                $("#fontAfter").html(fontBefore.substring(0,index++)+'lh_');
+                if(index>lastIndex) index = 0;
+            }
+            setInterval(_type,400);
+        })
+    </script>
+</html>    
+    

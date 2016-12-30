@@ -1,0 +1,46 @@
+<!--
+    **实现全选全不选
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jq全选</title>
+    </head>
+    <body>
+        <input type="checkbox" id='selectAll' >selet all<hr>
+        <p><input type="checkbox" name="chk" value="勋章">勋章</p>
+        <p><input type="checkbox" name="chk" value="某时某刻" >某时某刻</p>
+        <p><input type="checkbox" name="chk" value="致爱" >致爱</p>
+        <p><input type="checkbox" name="chk" value="海底" >海底</p>
+        <p><input type="checkbox" name="chk" value="诺言" >诺言</p>
+        <p><input type="checkbox" name="chk" value="冒险时间" >冒险时间</p> 
+        
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <!--
+        **判断是否选中   $('#chk').attr('checked');
+    -->
+    
+    <script>
+        $(function(){
+            $("#selectAll").click(function(){
+                $("input[name=chk]").each(function(i){
+                    //使用的js写法
+                    this.checked=!this.checked;
+                })
+                alert($("input[type='checkbox']:checked").length); //选中的个数
+            })
+            
+        })
+    </script>
+</html>
+
+
+
+
+
+
+
+

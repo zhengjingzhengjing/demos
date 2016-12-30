@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>form表单</title>
+<style>
+    body,html{ margin: 0; padding: 0}
+    section{ width: 1000px; min-height: 1000px; background-color: azure; padding: 50px}
+    input[type='checkbox']{
+        display: none;
+    }
+    .checkbox{
+        width: 10px; height: 6px; border: 1px solid red; display: inline-block
+    }
+</style>  
+</head>     
+    <!--
+        *getElementsByTagNameNS 和getElementsByTagName 用法相同 只是前者xml使用
+    -->
+<body>
+    <section>
+        <form id="register">
+            <input type="text" name="userName">
+            <input type="text" name="passWord">
+            <input type="text" value="input输入框怎么禁止粘贴" onpaste="return false;alert('不允许粘贴复制');" />
+        </form>
+            
+        <hr>
+        <big>
+            <label>
+                <input type="checkbox">我是张三 
+                <span class="checkbox"></span>
+            </label>
+        </big>
+    </section>
+</body>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(function(){
+        /*var form = document.getSelection*/
+        var userName = document.getElementsByName('userName');
+    })
+</script>
+</html>

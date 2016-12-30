@@ -1,0 +1,12 @@
+.tableDiv{
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    border-collapse: collapse
+}
+.tableDiv tr th,.tableDiv tr td{
+    padding: 5px 0
+}
+.zj_btn,.xiugai,.quxiao{
+    cursor: pointer
+}

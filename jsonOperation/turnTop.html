@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>计算机天堂  www.jsjtt.com </title>
+<script type="text/javascript" src="http://www.jsjtt.com/skin/jsjtt/js/jquery-1.7.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://www.jsjtt.com/skin/jsjtt/css/style.css">
+<style type="text/css">
+/*.go2top {
+    background: url("http://www.jsjtt.com/skin/jsjtt/img/go2top.png") no-repeat scroll left top transparent;
+    bottom: 15px;
+    color: #444444;
+    display: none;
+    height: 50px;
+    position: fixed;
+    right: 15px;
+    text-align: center;
+    width: 50px;
+    cursor: pointer;
+}
+.go2top:hover {
+    background-position: -50px top;
+}*/
+</style>
+</head>
+<body style="height: 2000px;"></body>
+<script>
+    $(document).ready(function() {
+        var backToTopTxt = "返回顶部",
+            backToTopEle = $('<div class="go2top"></div>').appendTo($("body"))
+            .attr("title", backToTopTxt).click(function() {
+                $("html, body").animate({ scrollTop: 0 }, 120);
+        }), $backToTopFun = function() {
+            //获取滚动条所在页面的高度
+            var st = $(document).scrollTop(), winh = $(window).height();
+                alert(st+"--"+winh);
+                
+                //????st>0????
+            (st > 0)? backToTopEle.show(): backToTopEle.hide();    
+            //IE6下的定位
+            if (!window.XMLHttpRequest) {
+                backToTopEle.css("top", st + winh - 166);    
+            }
+        };
+        //绑定滚动条滚动事件
+        $(window).bind("scroll", $backToTopFun);
+        $(function() { $backToTopFun(); });
+    });
+</script>    
+    
+</html>

@@ -1,0 +1,43 @@
+html,body{
+    height:100%;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    font-size: 10px;
+}
+
+.mcWrap{
+    width: 92%;
+    margin: 0 auto;
+    padding-top: 2.2rem
+}
+.ncTitle{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 2rem;
+}
+.ncSender{
+    font-size: 1.3rem;
+    line-height: 3rem;
+}
+.ncContent{
+    line-height: 1.8rem;
+    text-align: justify;
+}
+.ncContent img{
+    display:block;
+    width: 18rem;
+    text-align: center;
+    margin: 0.5rem auto;
+}
+.ncSenderTime{
+    font-size: 1.3rem;
+    text-align: right;
+    margin: 1.5rem 0 1rem 0;
+}
+
+

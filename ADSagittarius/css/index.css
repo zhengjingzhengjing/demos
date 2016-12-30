@@ -1,0 +1,80 @@
+@font-face {
+    font-family: pictos;
+    src:url('http://od19hmm2p.bkt.clouddn.com/PingFangRegular.otf'),
+        url('PingFangRegular.otf')
+}
+
+a, a:hover,a:active{ text-decoration: none; color: #000; }
+* { margin: 0; padding: 0; }
+.clearfix{ overflow: auto; _height:1%}
+ul li { list-style: none; }
+
+body { font-family:pictos; font-size: 14px; }
+
+.zj_wrap{ position: relative}
+.zj_header { position: absolute; top: 0; left: 0; z-index: 77; width: 100%; margin: 0 auto; height: 50px; font-size: 16px; background: rgba(0,0,0,.3); color: #fff; letter-spacing: 1px}
+.zj_logo{ font-size: 24px}
+.zj_logo,.zj_header nav ul { line-height: 50px; }
+.zj_header nav ul li { cursor: pointer; float: left; padding: 0 18px; }
+.zj_header nav ul li a{ color: #fff}
+.zj_header b,.languageSel b{ font-weight: normal; width: 45px; text-align: center; display: inline-block;}
+.nationalFlag img,.languageSel img{ width: 30px}
+
+.language{ position: relative; width: 132px; text-align: center}
+.language span{ display: inline-block}
+.languageSel{ position: absolute; left: 0; width: 100%; background-color: rgba(255,255,255,.3)} 
+.languageSel div{ line-height: 40px;}
+#sanjiao{
+    -webkit-transition: -webkit-transform 0.2s ease-out;
+    -moz-transition: -moz-transform 0.2s ease-out;
+    -o-transition: -o-transform 0.2s ease-out;
+    -ms-transition: -ms-transform 0.2s ease-out;
+}
+.sanjiao2{
+    -webkit-transform: rotateZ(180deg);
+    -moz-transform: rotateZ(180deg);
+    -o-transform: rotateZ(180deg);
+    -ms-transform: rotateZ(180deg);
+    transform: rotateZ(180deg);
+}
+
+.zj_banner { width: 100%; position: relative; overflow: hidden}
+.zj_banner img { max-width: 100%; }
+
+.swiper-container { width: 100%; height: 100%; }
+
+.swiper-slide { text-align: center; font-size: 18px; background: #fff; width: 60%; /* Center slide text vertically */ display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; }
+
+.zj_about {  margin: 0 auto; padding: 50px 0; text-align: center; border-bottom: 1px solid #aaacae}
+.preface{ border: 1px solid #a9abad; min-height: 423px; text-align: left}
+.preface img{ border-bottom: 1px solid #7b7c7f; max-width: 100%}
+.preface b,.preface i{ display: inline-block; padding: 0 15px;}
+.preface b{ margin: 16px 0; font-size: 20px; color: #333}
+.preface i{ padding-bottom: 15px; line-height: 22px; font-style: normal; font-weight: bold; color: #666;}
+
+.oneImg{ min-height: 416px; text-align: center; padding-top: 30px}
+.oneImg img{ max-width: 83%}
+.oneImg .oneImgFont{ font-size: 16px; text-align:left; line-height: 26px; margin-top: 100px; color: #666; font-weight: bold}
+.oneImg .oneImgFont i{ color: #4178be; font-style: normal; font-size: 30px;}
+.oneImg .oneImgFont span{ font-size: 16px;}
+
+.eightImg{ background: #323232; padding-top: 60px; position: relative; min-height:187px; }
+.eightOne{ width: 200px; margin: 0 auto; min-height:230px;}
+.eightOne img{ display: block; max-width: 45%; margin: 0 auto; /*height: 117px*/}
+.eightOne b{ display: inline-block; font-weight: normal; color: #fff;  text-align:left; margin-top: 20px; font-size: 18px; position: absolute; left: 50%; margin-left: -65px; color: #c9c9c9;}
+
+.oneStart{ padding: 100px 0}
+
+.enterprise{ border-top: 1px solid #aaacae; border-bottom: 1px solid #aaacae; padding: 60px 0; text-align: center;}
+.enterpriseTitle{ text-align: center; font-size: 50px; color: #c9c9c9}
+.enterprise img{ max-width: 68%; padding: 37px 0; margin: 0 auto}
+.small55 img{ width:45%; position: relative; top: -3px}
+.small60 img{ width:60%;}
+
+.zj_footer {  line-height: 44px; color: #333; font-weight: bold; letter-spacing: 1px; font-size: 16px}
+
+@media screen and (max-width: 992px) { 
+
+}
+
+/*# sourceMappingURL=index.css.map */

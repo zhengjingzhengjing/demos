@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分页</title>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(function(){
+    var pageArray = [];
+    
+    var liLen = $('#list li').length;//获取所有记录长度
+    var pageSize = 10;
+    var pageCount = Math.ceil(liLen/pageSize);//计算出有多少条 //向上取整
+    var pageCurrent = 1; //设置当前页
+    
+    //做出翻页按钮
+    var i=0;
+    for(i=1; i<pageCount;i++){
+        $("<a href='#' pageNum='"+i+"'>第"+i+"页   </a>").appendTo('#pageChange');
+    }
+    
+    //把li里面的内容追加到pageArray这个数组里面去
+    var lis =  $('#list li');
+    lis.each(function(){
+        pageArray.push(this);
+    })
+    
+    //把每一页的内容追加到#pagingList'容器里面去
+    for(var i=0;i<pageSize;i++){
+        //pageArray[i]  里面是每一页的内容
+        $(pageArray[i]).appendTo('#pagingList');
+    }
+    
+    function showPage(a){
+        $('#pagingList').html('');
+        for(i=(a-1)*pageSize;i<pageSize*a;i++){
+            $('#pagingList').append(pageArray[i]);
+        }
+    }
+    
+    var a;
+    $('a').click(function(){
+        a = $(this).attr('pageNum');
+        showPage(a);
+    })
+    
+    /*debugger;*/
+});
+</script>
+</head>
+<body>
+<div id="pageChange" ></div>
+<hr>    
+<div id="pagingList"></div>
+    
+<br /><br /><br /><br /><br />
+    
+    
+<ul id="list" >
+<li class="mm">美女A</li>
+<li class="gg">帅哥A</li>
+<li class="mm">美女B</li>
+<li class="gg">帅哥B</li>
+<li class="mm">美女C</li>
+<li class="gg">帅哥C</li>
+<li class="mm">美女D</li>
+<li class="gg">帅哥D</li>
+<li class="mm">美女E</li>
+
+<li class="gg">帅哥E</li>
+<li class="mm">美女F</li>
+<li class="gg">帅哥F</li>
+<li class="mm">美女G</li>
+<li class="gg">帅哥G</li>
+<li class="mm">美女H</li>
+<li class="gg">帅哥H</li>
+<li class="mm">美女A</li>
+<li class="gg">帅哥A</li>
+
+<li class="mm">美女B</li>
+<li class="gg">帅哥B</li>
+<li class="mm">美女C</li>
+<li class="gg">帅哥C</li>
+<li class="mm">美女D</li>
+<li class="gg">帅哥D</li>
+<li class="mm">美女E</li>
+<li class="gg">帅哥E</li>
+<li class="mm">美女F</li>
+
+<li class="gg">帅哥F</li>
+<li class="mm">美女G</li>
+<li class="gg">帅哥G</li>
+<li class="mm">美女H</li>
+<li class="gg">帅哥H</li>
+<li class="mm">美女A</li>
+<li class="gg">帅哥A</li>
+<li class="mm">美女B</li>
+<li class="gg">帅哥B</li>
+
+<li class="mm">美女C</li>
+<li class="gg">帅哥C</li>
+<li class="mm">美女D</li>
+<li class="gg">帅哥D</li>
+<li class="mm">美女E</li>
+<li class="gg">帅哥E</li>
+<li class="mm">美女F</li>
+<li class="gg">帅哥F</li>
+<li class="mm">美女G</li>
+
+<li class="gg">帅哥G</li>
+<li class="mm">美女H</li>
+<li class="gg">帅哥H</li>
+<li class="mm">美女A</li>
+<li class="gg">帅哥A</li>
+<li class="mm">美女B</li>
+<li class="gg">帅哥B</li>
+<li class="mm">美女C</li>
+<li class="gg">帅哥C</li>
+
+<li class="mm">美女D</li>
+<li class="gg">帅哥D</li>
+<li class="mm">美女E</li>
+<li class="gg">帅哥E</li>
+<li class="mm">美女F</li>
+<li class="gg">帅哥F</li>
+<li class="gg">帅哥G</li>
+<li class="gg">帅哥H</li>
+<li class="gg">帅哥G</li>
+
+</ul>
+</body>
+</html>

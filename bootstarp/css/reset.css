@@ -1,0 +1,6 @@
+*{  margin: 0;  padding: 0;  }
+ul li{  list-style: none;  }
+body{
+  font-family: core, "Avenir Next", "Helvetica Neue", Helvetica, Arial, "Source Han Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi MicroHei", sans-serif;
+  font-size: 14px;
+}

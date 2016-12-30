@@ -1,0 +1,181 @@
+<!--
+    **自己用的json文件实现的数据读取   结合data.json
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>jsonOperation</title>
+		<meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
+    <body>
+        <table class="tableDiv" border="1">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>hobby</th>
+                <th>sport</th>
+                <th>操作</th>
+            </tr>
+        </table>
+        
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="layer/layer.js"></script>
+    <script>
+        $.ajax({
+            url:'data.json',
+            type:'post',
+            dataType:'json',
+            success:function(result){
+                console.log(result);  //  [Object, Object, Object, Object] 这种形式  数组里面的数组
+                
+                var str;
+                for(var i=0;i<result.length;i++){
+                    str +=
+                        "<tr><td>"+result[i]['id']+
+                        "</td><td>"+result[i]['name']+
+                        "</td><td>"+result[i]['age']+
+                        "</td><td>"+result[i]['hobby']+
+                        "</td><td>"+result[i]['sport']+
+                        "</td><td class='end'><input type='button' value='操作' class='zj_btn' id='zj_btn"+result[i]['id']+"' map='"+result[i]['id']+"'></td></tr>";
+                }
+                
+                $(".tableDiv").append(str);
+                
+            },
+            error:function(response){
+                console.info(response);
+            }
+        })
+        
+       /* var change = {
+            changeBtn:function(id){
+                $("#zj_btn").click(function(){
+                    alert(1);
+                })
+            }
+        }
+        change.changeBtn(1);
+        layer.confirm('小美美不美？',{
+            btn:['美','不美'],
+        },function(){
+            layer.msg("确实很美！",{icon:1})
+        },function(){
+            layer.msg("一点儿都不美T_T",{
+                time:2000,
+                btn:['明白了','知道了']
+            })
+        });*/
+        
+        
+        $('.tableDiv').on('click','.zj_btn',function(e){ //动态绑定
+            var id = $(this).attr('map'); //找到每一个的id
+            var tr = $('tr:eq('+(id)+')'); //找到这个id对应的tr
+            var sn, name, age, hobby, sport;
+            
+            tr.find('td').each(function(n,o){  //找到对应的tr下面的td
+                o = $(o);
+                var value = o.text();
+                if(!o.hasClass('end')){
+                    switch(n){
+                        case 0:
+                           sn = value;
+                            break;
+                        case 1:
+                            name = value;
+                            break;
+                        case 2:
+                            age = value;
+                            break;
+                        case 3:
+                            hobby = value;
+                            break;
+                        case 4:
+                            sport = value;
+                            break;
+                    }
+                }
+                
+            })
+            
+            layer.open({
+                type:1,
+                skin:'layui-layer-rim',
+                area:['420px','240px'],
+                content:" <div class='alertDiv'> <p><span>编号：</span><span><input type='text' class='bianhao' value='"+sn+"'></span></p> <p><span>名字：</span><span><input type='text' class='mingzi' value='"+name+"'></span></p> <p><span>年纪：</span><span><input type='text' class='nianji' value='"+age+"'></span></p> <p><span>爱好：</span><span><input type='text' class='aihao' value='"+hobby+"'></span></p><p><span>运动：</span><span><input type='text' class='yundong' value='"+sport+"'></span></p><p><button class='xiugai'>修改</button><button class='quxiao'>取消</button></p> </div>"
+            });
+            
+            //隐藏div方法
+            function cacheFun(obj){
+                obj.css('display','none');
+                $(".layui-layer-shade").css('display','none');//遮罩层
+            }
+            
+            var cacheObject = null;
+            
+           
+            
+            var btnOperation = {
+                quxiao:function(){
+                     $(".quxiao").on('click',function(){
+                        cacheObject = $(".layui-layer");   //另一种显示隐藏的方法
+                        //$(".layui-layer").remove(); // hide
+                        // $.body.append(cacheObject);  // show 
+
+                        cacheFun($(".layui-layer"));
+                    });
+                },
+                xiugai:function(){
+                    $(".xiugai").on('click',function(){
+                        
+                        var bianhao = $(".bianhao").val();
+                        var mingzi = $(".mingzi").val();
+                        var nianji = $(".nianji").val();
+                        var aihao = $(".aihao").val();
+                        var yundong = $(".yundong").val();
+
+                        var options = {
+                            url:'data.json',
+                            type:'post',
+                            dataType:'json',
+                            data:{
+                                'id':bianhao,
+                                'name':mingzi,
+                                'age':nianji,
+                                'hobby':aihao,
+                                'sport':yundong,
+                            },
+                            success:function(result){
+                                /*alert('成功');*/
+                                cacheFun($(".layui-layer"));
+                            }
+                        }
+                        $.ajax(options);
+                    });
+                }
+            }
+            btnOperation.quxiao();
+            btnOperation.xiugai();
+        });
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

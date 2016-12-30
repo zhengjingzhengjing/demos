@@ -1,0 +1,521 @@
+<!DOCTYPE HTML> 
+<html> 
+<head> 
+<title>Rag Doll</title> 
+<meta name="Author" content="hongru.chenhr"> 
+<meta http-equiv="Content-type" content="text/javascript; charset=utf-8">
+ 
+<style type="text/css"> 
+     html {
+      overflow: hidden;
+     }
+     body {
+      margin: 0px;
+      padding: 0px;
+      background: #222;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+     }
+     #screen {
+      position: absolute;
+      left: 6%;
+      top: 10%;
+      width: 88%;
+      height: 80%;
+      background: #000;
+      overflow: hidden;
+      cursor: default;
+     }
+     #title {
+      position: absolute;
+      font-family: verdana;
+      width: 100%;
+      font-size: 7em;
+      font-weight: bold;
+      color: #181818;
+      text-align: center;
+      z-index:0;
+     }
+</style> 
+ 
+<script type="text/javascript">
+    var __SVG = false;
+    var __svgNS = false;
+    if (document.createElementNS) {
+     __svgNS = "http://www.w3.org/2000/svg";
+     __svg = document.createElementNS(__svgNS, "svg");
+     __SVG = (__svg.x != null);
+    }
+    if (__SVG) {
+     /* ============= SVG ============== */
+    vectorGraphics = function(o, antialias) {
+      this.canvas = document.createElementNS(__svgNS, "svg");
+      this.canvas.style.position = "absolute";
+      o.appendChild(this.canvas);
+      this.createLine = function(w, col, linecap) {
+       var o = document.createElementNS(__svgNS, "line");
+       o.setAttribute("shape-rendering", antialias?"auto":"optimizeSpeed");
+       o.setAttribute("stroke-width", Math.round(w)+"px");
+       if (col) o.setAttribute("stroke", col);
+       if (linecap) o.setAttribute("stroke-linecap", linecap);
+       o.move = function(x1, y1, x2, y2) {
+        this.setAttribute("x1", Math.round(x1) + .5);
+        this.setAttribute("y1", Math.round(y1));
+        this.setAttribute("x2", Math.round(x2));
+        this.setAttribute("y2", Math.round(y2));
+       }
+       o.color = function(c){ this.setAttribute("stroke", c); }
+       o.RGBcolor = function(R, G, B){ this.setAttribute("stroke", "rgb("+Math.round(R)+","+Math.round(G)+","+Math.round(B)+")"); }
+       o.stroke_weight = function(s){ this.setAttribute("stroke-width", Math.round(s)+"px"); }
+       this.canvas.appendChild(o);
+       return o;
+      }
+      this.createPolyline = function(w, points, col, fill) {
+       var o = document.createElementNS(__svgNS, "polyline");
+       o.setAttribute("shape-rendering", antialias?"auto":"optimizeSpeed");
+       o.setAttribute("stroke-width", Math.round(w));
+       if (col) o.setAttribute("stroke", col);
+       o.setAttribute("fill", fill?fill:"none");
+       if (points) o.setAttribute("points", points);
+       o.move = function(points) {
+        this.setAttribute("points", points);
+       }
+       this.canvas.appendChild(o);
+       return o;
+      }
+      this.createOval = function(diam, filled) {
+       var o = document.createElementNS(__svgNS, "circle");
+       o.setAttribute("shape-rendering", antialias?"auto":"optimizeSpeed");
+       o.setAttribute("stroke-width", 0);
+       o.setAttribute("r", Math.round(diam / 2));
+       o.style.cursor = "pointer";
+       o.move = function(x1, y1, radius) {
+        this.setAttribute("cx", Math.round(x1));
+        this.setAttribute("cy", Math.round(y1));
+        this.setAttribute("r", Math.round(radius));
+       }
+       o.stroke_color = function(col) { this.setAttribute("stroke", col); }
+       o.fill_color = function(col) { this.setAttribute("fill", col); }
+       o.stroke_weight = function(sw) { this.setAttribute("stroke-width", sw); }
+       this.canvas.appendChild(o);
+       return o;
+      }
+     }
+
+    } else if (document.createStyleSheet) {
+     /* ============= VML ============== */
+     vectorGraphics = function(o, antialias) {
+      document.namespaces.add("v", "urn:schemas-microsoft-com:vml");
+      var style = document.createStyleSheet();
+      var VMLel = ['line','stroke','polyline','fill','oval'];
+      for (var i=0,l=VMLel.length;i<l;i++) {
+       style.addRule('v\\:'+VMLel[i], "behavior: url(#default#VML);");
+       style.addRule('v\\:'+VMLel[i], "antialias: "+antialias+";");
+      }
+      this.canvas = o;
+      this.createLine = function(w, col, linecap) {
+       var o = document.createElement("v:line");
+       o.strokeweight = Math.round(w)+"px";
+       if (col) o.strokecolor = col;
+       o.move = function(x1, y1, x2, y2) {
+        this.to   = (Math.round(x1) + .5) + "," + Math.round(y1);
+        this.from = Math.round(x2) + "," + Math.round(y2);
+       }
+       o.color = function(c){ this.strokecolor = c; }
+       o.RGBcolor = function(R, G, B){ this.strokecolor = "rgb("+Math.round(R)+","+Math.round(G)+","+Math.round(B)+")"; }
+       o.stroke_weight = function(s){ this.strokeweight = Math.round(s)+"px"; }
+       if (linecap) {
+        s = document.createElement("v:stroke");
+        s.endcap = linecap;
+        o.appendChild(s);
+       }
+       this.canvas.appendChild(o);
+       return o;
+      }
+      this.createPolyline = function(w, points, col, fill) {
+       var o = document.createElement("v:polyline");
+       o.strokeweight = Math.round(w)+"px";
+       if (col) o.strokecolor = col;
+       o.points = points;
+       if (fill) o.fillcolor = fill;
+       else {
+        s = document.createElement("v:fill");
+        s.on = "false";
+        o.appendChild(s);
+       }
+       o.move = function(points) {
+        this.points.value = points;
+       }
+       this.canvas.appendChild(o);
+       return o;
+      }
+      this.createOval = function(diam, filled) {
+       var o = document.createElement("v:oval");
+       var os = o.style;
+       os.position = "absolute";
+       os.cursor = "pointer";
+       o.strokeweight = 1;
+       o.filled = filled;
+       os.width = Math.round(diam) + "px";
+       os.height = Math.round(diam) + "px";
+       o.move = function(x1, y1, radius) {
+        os.left   = Math.round(x1 - radius) + "px";
+        os.top    = Math.round(y1 - radius) + "px";
+        os.width  = Math.round(radius * 2) + "px";
+        os.height = Math.round(radius * 2) + "px";
+       }
+       o.stroke_color = function(col) { this.strokecolor = col; }
+       o.fill_color = function(col) { this.fillcolor = col; }
+       o.stroke_weight = function(sw) { this.strokeweight = sw; }
+       this.canvas.appendChild(o);
+       return o;
+      }
+     }
+    } else {
+     /* ==== no script ==== */
+     vectorGraphics = function(o, i) {
+      return false;
+     }
+    }
+</script> 
+ 
+<script type="text/javascript"> 
+/* ==== Vector constructor ==== */
+function Vector (x, y) { this.x = x; this.y = y; }
+Vector.prototype.equ = function (vector, x, y) { this.x  = vector.x || x || 0; this.y =  vector.y || y || 0; }
+Vector.prototype.add = function (vector, x, y) { this.x += vector.x || x || 0; this.y += vector.y || y || 0; }
+ 
+/* ==== ragdoll script ==== */
+var ragdoll = function () {
+ /* ---- private vars ---- */
+ var svg;
+ var scr;
+ var xm = 0;
+ var ym = 0;
+ var nw = 0;
+ var nh = 0;
+ var zoom = 1.5;
+ var dragDoll = false;
+ var xd = 0;
+ var yd = 0;
+ var dolls = [];
+ var nodes = [];
+ var nBlood = 100;
+ var blood = [];
+ var collisions = [];
+ var initScript = function () {
+  /* ---- blood reserve ---- */
+  for (var i = 0; i < nBlood; i++) blood.push(new Blood());
+  /* ---- preset collisions table ---- */
+  for (var i = 0; i < dolls.length; i++ ) {
+   for (var j = 0; j < i; j++) {
+    if (i != j) {
+     var o1 = dolls[i];
+     var o2 = dolls[j];
+     for (var i1 = 0, n1; n1 = o1.nodes[i1++]; ) {
+      for (var i2 = 0, n2; n2 = o2.nodes[i2++]; ) {
+       if (n1.testCol == 1 && n2.testCol == 1) {
+        collisions.push({
+         n1p : n1.pos,
+         n1o : n1.oBody.pos,
+         n2p : n2.pos,
+         n2o : n2.oBody.pos,
+         n2s : new Vector(0,0),
+         r   : ((n1.size * .5) + (n2.size * .5)) / n1.h2Body,
+         m2  : n1.mass / (n1.mass + n2.mass),
+         m1  : n2.mass / (n1.mass + n2.mass)
+        });
+       }     
+      }     
+     } 
+    }
+   }
+  }
+ }
+ ////////////////////////////////////////////////////////////////////////////
+ /* ==== DOM events ==== */
+ function addEvent (o, e, f) {
+  if (window.addEventListener) o.addEventListener(e, f, false);
+  else if (window.attachEvent) r = o.attachEvent('on' + e, f);
+ }
+ /* ==== screen dimensions ==== */
+ function resize() {
+  nw = scr.offsetWidth || 0;
+  nh = scr.offsetHeight || 0;
+ }
+ var initEvents = function () {
+  /* ---- mouse move event ---- */
+  addEvent(document, 'mousemove', function (e) {
+   if (window.event) e = window.event;
+   xm = e.clientX;
+   ym = e.clientY;
+  });
+  /* ---- mouse up event ---- */
+  addEvent(document, 'mouseup', function () {
+   if ( dragDoll && document.releaseCapture) dragDoll.dragNode.o.releaseCapture();
+   scr.style.cursor = "default";
+   dragDoll = false;
+   return false;
+  });
+  /* ---- screen resize event ---- */
+  resize();
+  addEvent(window, 'resize', resize);
+ }
+ ////////////////////////////////////////////////////////////////////////////
+ /* ==== blood constructor ==== */
+ var Blood = function () {
+  this.o = svg.createLine(6 * zoom, "#F00", "round");
+  this.o.move(-99,-99,-99,-99);
+  this.pos = new Vector(0, 0);
+  this.vel = new Vector(0, 0);
+  this.bloody = false;
+  this.W = 0;
+ }
+ Blood.prototype.start  = function (x, y, vx, vy) {
+  this.pos.equ(false, x, y);
+  this.vel.equ(false, vx, vy);
+  this.bloody = true;
+ }
+ Blood.prototype.anim = function () {
+  this.vel.x *= .96;
+  this.vel.y *= .96;
+  this.pos.add(this.vel);
+  if (Math.abs(this.vel.x) + Math.abs(this.vel.y) > 1) {
+   this.o.move(
+    this.pos.x, this.pos.y, 
+    this.pos.x + this.vel.x, this.pos.y + this.vel.y
+   );
+   this.W = parseInt(document.getElementById('red').style.width) + 1;
+   document.getElementById('red').style.width = this.W + 'px';
+   //if(this.W > = 2000) {document.getElementById('red').style.width = '0px';}
+  } else {
+   this.o.move(-99,-99,-99,-99);
+   this.bloody = false;
+  }
+ }
+ ////////////////////////////////////////////////////////////////////////////
+ /* ==== Doll constructor ==== */
+ var Doll = function (x, y, structure) {
+  this.nodes = [];
+  /* ==== Node constructor ==== */
+  this.Node = function (doll, p) {
+   this.parent          = doll;
+   this.oBody           = p[1];
+   this.oSpring         = p[3];
+   this.hBody           = p[2] * p[2] * zoom * zoom;
+   this.h2Body          = p[2] * zoom;
+   this.hSpring         = p[4] * p[4] * zoom * zoom;
+   this.size            = p[5] * zoom;
+   this.pos             = new Vector(x + Math.random(), y);
+   this.old             = new Vector(x + Math.random(), y);
+   this.vel             = new Vector(0, 0);
+   this.mass            = p[6];
+   this.ind             = p[0];
+   this.bloody          = p[8];
+   this.testCol         = p[9];
+   this.o               = svg.createLine(this.size, p[7], "round");
+   this.s               = false;
+   this.o.style.cursor  = "pointer";
+   this.o.parent        = this;
+   this.barW            = 0;
+   /* ---- drag events ---- */
+   this.o.onselectstart = function () { return false; }
+   this.o.ondrag        = function () { return false; }
+   this.o.onmousedown   = function () {
+    dragDoll = this.parent.parent;
+    dragDoll.dragNode = this.parent;
+    xd = dragDoll.dragNode.pos.x - xm;
+    yd = dragDoll.dragNode.pos.y - ym;
+    scr.style.cursor = "pointer";
+    if (this.setCapture) this.setCapture();
+    return false;
+   }
+   /* ==== maintain tables ==== */
+   doll.nodes[this.ind] = this;
+   nodes.push(this);
+  }
+  /* ==== blood splash ==== */
+  this.Node.prototype.bounce = function (val) {
+   if (this.bloody)
+    if (this.vel.x * this.vel.x + this.vel.y * this.vel.y > zoom)
+     for (var i = 2; i < 2 + Math.random(); i += .25)
+      if (ragdoll.eBlood)
+       blood[Math.floor(Math.random() * nBlood)].start(this.pos.x, this.pos.y, .001 - this.vel.x * zoom * i, .001 - this.vel.y * zoom * i);
+   this.old.equ(this.pos);
+   return val;
+  }
+  /* ==== solving constraints by relaxation ==== */
+  this.Node.prototype.satisfyConstraints = function (that, len) {
+   var dx = that.pos.x - this.pos.x;
+   var dy = that.pos.y - this.pos.y;
+   var delta = len / (dx * dx + dy * dy + len) - .5;
+   var m1 = (this.mass + that.mass) * ragdoll.flexibility;
+   var m2 = this.mass / m1;
+   m1 = that.mass / m1;
+   this.pos.add(false, -m1 * dx * delta, -m1 * dy * delta);
+   that.pos.add(false,  m2 * dx * delta,  m2 * dy * delta);
+  }
+  /* ==== Graphic rendering ==== */
+  this.Node.prototype.rendering = function () {
+   /* ---- body ---- */
+   if (this.size) this.o.move(
+    this.pos.x, this.pos.y,
+    this.oBody.pos.x, this.oBody.pos.y
+   );
+   /* ---- springs ---- */
+   if (this.s)
+    this.s.move(
+     this.pos.x, this.pos.y,
+     this.oSpring.pos.x, this.oSpring.pos.y
+    );
+  }
+  /* ==== Verlet Integration ==== */
+  this.Node.prototype.verlet = function () {
+   this.vel.x = (ragdoll.viscosity * (this.pos.x - this.old.x)) || 1;
+   this.vel.y = (ragdoll.viscosity * (this.pos.y - this.old.y) + ragdoll.gravity) || 1;
+   this.old.equ(this.pos);
+   this.pos.add(this.vel);
+   /* --- test borders --- */
+   if (this.testCol) {
+    var size = this.size * .5;
+    if (this.pos.x < size) this.pos.x = this.bounce(size);
+    else if (this.pos.x > nw - size) this.pos.x = this.bounce(nw - size);
+    if (this.pos.y < size) this.pos.y = this.bounce(size);
+    else if (this.pos.y > nh - size) this.pos.y = this.bounce(nh - size);
+   }
+   /* --- Constraint --- */
+   if (this != this.oSpring) this.satisfyConstraints(this.oSpring, this.hSpring);
+   if (this != this.oBody) this.satisfyConstraints(this.oBody, this.hBody);
+  }
+  /* ==== create springs display ==== */
+  this.Node.prototype.dispSpring = function () {
+   if (ragdoll.eSprings) {
+    /* ---- create spring line ---- */
+    this.s = svg.createLine(1, "#0F0", "");
+    this.s.onselectstart = function () { return false; }
+    this.s.ondrag        = function () { return false; }
+    this.s.o             = this;
+    this.s.onmousedown   = function () {
+     this.o.o.onmousedown();
+     return false;
+    }
+   } else {
+    /* ---- clear DOM ---- */
+    this.s.parentNode.removeChild(this.s);
+    this.s = false;
+   }
+  }
+  /* ==== create Nodes ==== */
+  for (var i = 0, p; p = structure[i++];) new this.Node(this, p);
+  for (var i = 0, o; o = this.nodes[i++]; ) {
+   o.oBody = this.nodes[o.oBody];
+   o.oSpring = this.nodes[o.oSpring];
+  }
+ }
+ ////////////////////////////////////////////////////////////////////////////
+ /* ==== determine Segment Intersection ==== */
+ var segmentsIntersection = function (p1, p2, p3, p4) {
+  var dn = ((p4.y - p3.y) * (p2.x - p1.x)) - ((p4.x - p3.x) * (p2.y - p1.y));
+  if (dn) {
+   var na = ((p4.x - p3.x) * (p1.y - p3.y)) - ((p4.y - p3.y) * (p1.x - p3.x));
+   var nb = ((p2.x - p1.x) * (p1.y - p3.y)) - ((p2.y - p1.y) * (p1.x - p3.x));
+   var ua = na / dn;
+   var ub = nb / dn;
+   if (ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1) return ua;
+  }
+  return false;
+ }
+ ////////////////////////////////////////////////////////////////////////////
+ /* ==== main loop ==== */
+ var run = function () {
+  /* --- drag node --- */
+     if (dragDoll) {
+      dragDoll.dragNode.pos.x += (xm + xd - dragDoll.dragNode.pos.x) * .2;
+      dragDoll.dragNode.pos.y += (ym + yd - dragDoll.dragNode.pos.y) * .2;
+     }
+     /* ---- dolls ---- */
+     for (var i = 0, o; o = nodes[i++]; ) o.verlet();
+  for (var i = 0, o; o = nodes[i++]; ) o.rendering();
+  /* ---- blood ---- */
+  for (var i = 0, o; o = blood[i++]; ) if (o.bloody) o.anim();
+  /* ---- collisions btw dolls ---- */
+  if (ragdoll.collision) {
+   for (var i = 0, o; o = collisions[i++]; ) {
+    o.n2s.x = o.n2p.x - (o.n2o.x - o.n2p.x) * o.r;
+    o.n2s.y = o.n2p.y - (o.n2o.y - o.n2p.y) * o.r;
+    var ua = segmentsIntersection(o.n1p, o.n1o, o.n2s, o.n2o);
+    if (ua != false) {
+     /* ---- bounce ---- */
+     var ix = ua * (o.n2o.x - o.n2p.x) * ragdoll.collision;
+     var iy = ua * (o.n2o.y - o.n2p.y) * ragdoll.collision;
+     o.n1o.x -= ix * o.m1;
+     o.n2o.x += ix * o.m2;
+     o.n1o.y -= iy * o.m1;
+     o.n2o.y += iy * o.m2;
+    }
+   }
+  }
+     setTimeout(run, 16);
+ }
+ return {
+  ////////////////////////////////////////////////////////////////////////////
+  /* ==== PUBLIC parameters setup ==== */
+  viscosity   : .999,
+  flexibility : 3,
+  gravity     : .1,
+  collision   : .05,
+  eBlood      : true,
+  eSprings    : false,
+  dispSprings : function () {
+   this.eSprings = !this.eSprings;
+   for (var i = 0, o; o = nodes[i++]; ) o.dispSpring();
+  },
+  /* ==== initialize script ==== */
+  init : function () {
+   addEvent(window, 'load', function () {
+    /* ---- init SVG/VML canvas ---- */
+    scr = document.getElementById("screen");
+    initEvents();
+    svg = new vectorGraphics(scr, true);
+    zoom = nh / 250;
+    /* ---- syntax ---- */
+    // dolls.push(new Doll(ragdoll_init_pos_x, ragdoll_init_pos_y, [
+    // [node_ind,node_parent_ind,node_length,node_spring_parent_ind,spring_length,node_width,node_mass,node_color,blood_on_off,collisions_on_off],
+    // note: declare nodes by z-index order (painting algorithm) - thanks SVG for not implementing zIndex property !!!
+    /* ---- create ragdoll ---- */ 
+    dolls.push(new Doll(nw * .5, 40, [
+     [1,0,3,7,80,10,1, "#888", 0, 0],
+     [5,3,20,1,60,8,1, "#888", 0, 1],
+     [6,4,20,1,60,8,1, "#888", 0, 1],
+     [3,1,20,4,40,10,1, "#FFF", 1, 1],
+     [4,1,20,2,40,10,1, "#FFF", 1, 1],
+     [9,7,30,2,80,8,2, "#888", 0, 1],
+     [10,8,30,2,80,8,2, "#888", 0, 1],
+     [7,2,30,8,30,13,1, "#F80", 1, 1],
+     [8,2,30,1,80,13,1, "#F80", 1, 1],
+     [2,1,30,3,40,20,2, "#FFF", 1, 1],
+     [0,0,35,2,60,35,1, "#888", 1, 1],
+     [11,1,1,2,25,0,1, "#000", 0, 0],
+     [12,11,25,11,25,5,1, "#444", 0, 0]
+    ]));
+    initScript(); 
+    run();
+   });
+  }
+ }
+}();
+ 
+/* ==== start script ==== */
+ragdoll.init();
+ 
+</script> 
+</head> 
+ 
+<body> 
+ <div id="screen"> 
+  <div id="title">花多少时间折磨死他</div>               
+  <div id="red" style="position:absolute;height:20px;background:red;width:20px"></div>
+ </div> 
+</body> 
+</html>

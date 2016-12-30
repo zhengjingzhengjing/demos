@@ -1,0 +1,42 @@
+<!--
+    **有数据库，但是只做到数据读取出来部分
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>数据库数据</title>
+    <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <table class="tableDiv" border="1">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>hobby</th>
+                <th>sport</th>
+                <th>操作</th>
+            </tr>
+        </table>
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            url:'data_sql.php',
+            type:'post',
+            dataType:'json',
+            success:function(res){
+                if(res.code == 1){
+                    var datas = res.data;  //拿出来是字符串
+                    datas = JSON.parse(datas); //字符串转成对象  [Object, Object, Object, Object] 这种形式  
+                    for(var o in datas){
+                        var data = datas[o];
+                        console.info(data);
+                    }
+                }
+            }
+        })
+    </script>
+</html>    
+    

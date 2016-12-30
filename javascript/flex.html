@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>hehe</title>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+</head>
+    <style>
+    
+        .demo {
+          width: 0;
+          height: 0;
+          border-width: 20px;
+          border-style: solid;
+          border-color: transparent transparent red transparent;
+        }
+    </style>
+<body>
+    <div class="demo">
+        
+    </div>
+    <script>
+        var e = document.createElement('input');
+        e.type = 'button';
+        e.value = '2';
+        e.id='click';
+        document.body.appendChild(e);
+        var t = document.createTextNode('woshizhangsan');
+        document.body.appendChild(t);
+        
+        document.getElementById('click').addEventListener('click',function(){
+            document.body.removeChild(t);
+            document.body.innerHTML = 'nihao';
+        })
+        
+        document.body.addEventListener('keydown',function(event){
+            var e = event || window.event;
+            e.stopPropagation();
+            if(e.keyCode == 13){
+                alert(e.keyCode);
+            }
+            
+        })
+        
+         function add(a,b) {
+            alert(a+b);
+        }
+        function sub(a,b){
+            alert(a-b);
+        }
+
+        add.call(sub,3,1);
+    </script>
+</body>
+</html>

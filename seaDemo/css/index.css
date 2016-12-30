@@ -1,0 +1,74 @@
+/* *{
+    margin: 0;
+    padding: 0;
+} */
+
+.bigSmallImg{
+    width: 300px;
+    margin: 20px;
+    cursor: pointer;
+    position: relative;
+}
+.bigImg{
+    width: 35px;
+    display: block;
+    margin: 20px 0px
+}
+.bImgArea{
+    position: absolute;
+    width: 200px;
+    min-height: 200px;
+    right: -30px;
+    top:50px;
+    background: red
+}
+.bigImg1{
+    width: 200px
+}
+
+.marginTop,.marginTop1{
+    padding:100px 0 0 100px;
+    width: 300px;
+}
+#inputValue,#inputValue1{
+    border:1px solid red;
+    height: 35px;
+    line-height: 35px;
+    width: 300px
+}
+.alternativeList,.alternativeList1{
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 0;
+    display: none
+}
+.alternativeList li,.alternativeList1 li{
+    line-height: 40px;
+    background: green;
+}
+.alternativeList li:hover,.alternativeList1 li:hover{
+    background: pink
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

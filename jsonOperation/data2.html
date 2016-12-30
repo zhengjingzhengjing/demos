@@ -1,0 +1,142 @@
+<!--
+    **挺完整的，就是最后修改内容的时候因为接口没有写写入的操作，所以刷新还是会出来会还原数据库里面的数据
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk">
+        <title>数据库数据</title>
+    <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <table class="tableDiv" border="1">
+            <tr>
+                <th>id</th>
+                <th>cdname</th>
+                <th>singer</th>
+                <th>操作</th>
+            </tr>
+        </table>
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="layer/layer.js"></script>
+    <script>
+        $.ajax({
+            url:'data_sql2.php',
+            type:'post',
+            dataType:'json',
+            success:function(res){
+                if(res.code == 1){
+                    var result = res.data;
+                    console.log(result);
+                    var str;
+                    for(var i=0;i<result.length;i++){
+                        str += 
+                            "<tr><td>"+result[i]['id']+
+                            "</td><td>"+result[i]["cdname"]+
+                            "</td><td>"+result[i]["singer"]+
+                            "</td><td class='end'><input type='button' id='zj_btn' class='zj_btn' value='修改' map='"+result[i]['id']+"'></td></tr>";
+                    }
+                    $(".tableDiv").append(str);
+                }
+                
+            },
+            error:function(response){
+                console.info(response);
+            }
+        })
+        
+        /*
+        *进行操作修改
+        */
+        
+        //声明两个全局变量，后面修改保存的时候也会用到
+        var currentIndex = -1; //得到对应的id
+        var currentTr = null;   //得到上面id对应的tr   
+        
+        $('.tableDiv').on('click','.zj_btn',function(e){ 
+            var o = $(this);
+            currentIndex = o.attr('map');
+            currentTr = $("tr:eq("+currentIndex+")");
+            var id, cdname, singer;
+            
+            currentTr.find('td').each(function(n,o){  //n为键 o为值
+            
+                var o = $(o);
+                var value = o.text();  //只得里面的文本
+                
+                if(!o.hasClass('end')){
+                    switch(n){
+                        case 0:
+                            id = value;
+                            break;
+                        case 1:
+                            cdname = value;
+                            break;
+                        case 2:
+                            singer = value;
+                            break;
+                    }
+                }
+                
+            });
+            layer.open({
+                type:1,
+                skin:'layui-layer-rim',
+                area:['420px','240px'],
+                content:" <div class='alertDiv'> <p><span>编号：</span><span><input type='text' class='bianhao' readonly value='"+id+"'></span></p> <p><span>歌曲名：</span><span><input type='text' class='cdname' value='"+cdname+"'></span></p><p><span>歌手：</span><span><input type='text' class='singer' value='"+singer+"'></span></p><p><button class='xiugai'>修改</button><button class='quxiao'>取消</button></p> </div>"
+            });
+        });
+        
+        function layerHide(obj){
+            obj.remove();//不能用隐藏，只是隐藏掉而没有消失掉，会默认每次都去第一次的值
+            $(".layui-layer-shade").css('display','none');
+        }
+        
+        //注意，因为是动态生成的，所以这个得写在动态绑定里面，如果要写在外面，就必须要动态绑定写这种形式
+        
+         $("body").on('click','.quxiao',function(){
+            layerHide($(".layui-layer"));
+        });
+        
+        $("body").on('click','.xiugai',function(){
+                        
+            var name = $(".cdname").val();
+            var theSinger = $(".singer").val();
+
+            $.ajax({
+                url:'data_sql2.php',
+                type:'post',
+                dataType:'json',
+                data:{
+                    'cdname':name,
+                    'singer':theSinger
+                },
+                success:function(res){
+                    if(res.code == 1){//和得值的code码一眼  为1的时候是成功
+                        currentTr.find('td:eq(1)').text(name);
+                        currentTr.find('td:eq(2)').text(theSinger);
+
+                    }
+                    layerHide($(".layui-layer"));
+                        layer.alert('修改成功',{
+                            skin:'layui-layer-molv',
+                            closeBtn:0
+                        })
+
+                }
+            })
+        });
+        
+            
+    </script>
+</html>    
+    
+
+
+
+
+
+
+
+

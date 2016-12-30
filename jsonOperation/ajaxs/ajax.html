@@ -1,0 +1,59 @@
+<!--
+    **ajax 里面的加载
+    $.getScript()
+    $.getJSON()
+    $.get()
+    $.post()
+
+    dataType():
+
+    text 将服务器的响应座位纯文本返回，不作任何处理
+    html 和text一样道理、 
+    xml
+    script 请求的url被认为指向js文件  $.getScript使用该类型
+    json    请求的url被认为指向json文件 $.getJSON使用该类型 如果url或者数据字符串中含有"=?"得用jsonp
+    jsonp  请求的url被认为指向服务器脚本
+    
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jq全选</title>
+        <style>
+           
+        </style>
+    </head>
+    <body>
+       <div class="status" id="status">
+             
+       </div>
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+   
+    <script>
+        $(function(){
+          jQuery.ajax(function(){
+              type:"GET", //http请求方法
+              url:URL;      //要获取数据的url 
+              data:null,    //不给url添加任何数据    
+              dataType:'script', //一旦获取到数据，立即当做脚本执行
+              success:callback   //完成时调用该函数     
+          })
+          
+          jQuery.ajaxSetup({
+              timeout:2000,//在两秒后取消所有ajax请求
+              cache:false //通过给url添加时间戳来禁用浏览器缓存
+          })
+        })
+    </script>
+</html>
+
+
+
+
+
+
+
+

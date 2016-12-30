@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>超出加省略号</title>
+        <style>
+            .imgSize{
+                padding: 3px;
+                border: 1px solid red;
+                width: 200px;
+                height: 200px
+            }
+          
+        </style>
+    </head>
+    <body>
+        <div class="imgSize" id="imgSize">
+           我是张三，你是李四，他是鹿晗
+        </div>
+        
+    </body>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script> 
+       /*var str = document.getElementById('imgSize');*/
+        var str="我是张三，你是李四，他是鹿晗";
+        if(str.length>10){
+           str= str.substring(0,10)+'...';
+            alert(str);
+        }
+    
+      
+    </script>    
+</html>

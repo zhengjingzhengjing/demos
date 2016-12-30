@@ -1,0 +1,30 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>文本框走动跑马灯代码</title>
+</head>
+<SCRIPT Language="JavaScript">
+ 
+var msg="欢迎访问脚本之家 www.jb51.net";
+var interval = 1000;
+var space10="";
+var seq=0;
+ 
+function Scroll() {
+document.tmForm.tmText.value = msg.substring(seq, msg.length) + space10 + msg.substring(0, msg.length);
+seq++;seq++;
+if ( seq > msg.length ) { seq = 0 };
+window.setTimeout("Scroll();", interval );
+} 
+ 
+</SCRIPT>
+ 
+<BODY OnLoad="Scroll();" >
+ 
+<CENTER><FORM Name=tmForm>
+<INPUT Type=Text Name=tmText Size=45>
+</FORM></CENTER>
+ 
+ 
+<body>
+</body>
+</html>
